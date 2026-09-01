@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cash Register</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1b1f27">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-192.svg">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="stylesheet" href="styles.css">
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+
+<header class="app-header">
+  <h1>Cash Register</h1>
+  <div class="header-actions">
+    <div class="header-tabs">
+      <button class="tab-btn active" data-view="log" data-tip="Add and review cash payments">Log</button>
+      <button class="tab-btn" data-view="analytics" data-tip="Spending by day, week, month, or a custom range">Analytics</button>
+      <button class="tab-btn" data-view="categories" data-tip="Manage your spending categories">Categories</button>
+      <button class="tab-btn" data-view="archive" data-tip="Deleted entries you can restore">Archive</button>
+    </div>
+    <select id="currency-select" class="currency-select" aria-label="Currency" data-tip="Currency used to display all amounts"></select>
+    <button type="button" id="undo-btn" class="icon-btn" data-tip="Nothing to undo" aria-label="Undo last change" disabled>↩️</button>
+    <button type="button" id="sync-btn" class="icon-btn" data-tip="Sign in with Google and sync with your Sheet" aria-label="Sync with Google Sheets">🔄</button>
+    <button type="button" id="theme-toggle" class="icon-btn" data-tip="Toggle light / dark theme" aria-label="Toggle light or dark theme">🌙</button>
+  </div>
+</header>
+
+<div id="sync-status" class="sync-status" hidden></div>
+
+<form id="quick-add" class="quick-add" autocomplete="off">
+  <div class="quick-add-row">
+    <input type="number" id="qa-amount" step="0.01" min="0" placeholder="0.00" required data-tip="Amount paid in cash">
+    <input type="date" id="qa-date" required>
+  </div>
+  <div class="quick-add-row qa-location-row">
+    <input type="text" id="qa-category" placeholder="Category — type to search, or pick recent" data-tip="What kind of spend this was. Type to search, click a match, or press Enter to use a new one">
+    <div class="qa-recent-locations" id="qa-recent-categories"></div>
+  </div>
+  <div class="quick-add-row qa-location-row">
+    <input type="text" id="qa-location" placeholder="Location — type to search, or pick recent" data-tip="Where the payment was made. Type to search, click a match, or press Enter to use a new one">
+    <div class="qa-recent-locations" id="qa-recent-locations"></div>
+  </div>
+  <div class="quick-add-row">
+    <input type="text" id="qa-comment" placeholder="Comment (optional)" data-tip="Any extra note about this payment">
+    <button type="submit">Add</button>
+  </div>
+</form>
+
+<main id="log-view" class="log-view">
+  <div id="log-list" class="log-list"></div>
+</main>
+
+<main id="analytics-view" class="analytics-view" hidden>
+  <div class="analytics-range-bar">
+    <div class="range-picker" id="range-picker" role="group" aria-label="Date range"></div>
+    <div class="custom-range-inputs" id="custom-range-inputs" hidden>
+      <input type="date" id="range-start">
+      <span>to</span>
+      <input type="date" id="range-end">
+    </div>
+  </div>
+
+  <div class="analytics-stats" id="analytics-stats"></div>
+
+  <div class="analytics-panel">
+    <h2 data-tip="Total cash spent on each day in the selected range">Spent per day</h2>
+    <div class="trend-chart" id="trend-chart"></div>
+  </div>
+
+  <div class="analytics-grid">
+    <div class="analytics-panel">
+      <h2 data-tip="Spending in this range, grouped by category">By category</h2>
+      <div class="breakdown-list" id="breakdown-category"></div>
+    </div>
+    <div class="analytics-panel">
+      <h2 data-tip="Spending in this range, grouped by location">By location</h2>
+      <div class="breakdown-list" id="breakdown-location"></div>
+    </div>
+  </div>
+</main>
+
+<main id="categories-view" class="categories-view" hidden>
+  <form id="add-category-form" class="add-category-form">
+    <input type="text" id="new-category-name" placeholder="New category name" required>
+    <button type="submit">Add</button>
+  </form>
+
+  <section class="categories-section">
+    <h2>Active</h2>
+    <div id="active-categories-list" class="categories-list"></div>
+  </section>
+
+  <section class="categories-section">
+    <h2>Archived</h2>
+    <div id="archived-categories-list" class="categories-list"></div>
+  </section>
+</main>
+
+<main id="archive-view" class="archive-view" hidden>
+  <p class="log-subtitle">Deleted entries — restore if that was a mistake.</p>
+  <div id="archive-list" class="log-list"></div>
+</main>
+
+<script src="app.js"></script>
+<script src="sync.js"></script>
+</body>
+</html>
