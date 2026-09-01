@@ -12,8 +12,8 @@
 //    https://docs.google.com/spreadsheets/d/THIS_PART_IS_THE_ID/edit
 // 5. Paste both values below.
 const SYNC_CONFIG = {
-  GOOGLE_CLIENT_ID: "YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com",
-  SPREADSHEET_ID: "YOUR_SPREADSHEET_ID",
+  GOOGLE_CLIENT_ID: "246214960329-l8suv47t0rr952eu0mr5emunbmg1bpgm.apps.googleusercontent.com",
+  SPREADSHEET_ID: "1FAfwKxWKq0ykRsWANu3xc9E1e3mhrQkE5XVkC6cjUs4",
 };
 
 const SYNC_SCOPE = "https://www.googleapis.com/auth/spreadsheets";
