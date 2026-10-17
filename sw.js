@@ -1,10 +1,9 @@
-const CACHE_NAME = "cashreg-v1";
+const CACHE_NAME = "hitlist-v1";
 const ASSETS = [
   "./",
   "./index.html",
   "./styles.css",
   "./app.js",
-  "./sync.js",
   "./manifest.json",
   "./icon.svg",
 ];

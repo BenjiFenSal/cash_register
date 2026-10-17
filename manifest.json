@@ -1,6 +1,6 @@
 {
-  "name": "Cash Register",
-  "short_name": "Cash Reg",
+  "name": "Benji's Hit List",
+  "short_name": "Hit List",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
