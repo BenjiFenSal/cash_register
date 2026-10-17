@@ -946,6 +946,7 @@ body {
   margin-right: 0.2rem;
 }
 
+.set-date-btn,
 .add-days-btn,
 .add-days-custom-btn {
   font-size: 0.72rem;
@@ -957,6 +958,7 @@ body {
   cursor: pointer;
 }
 
+.set-date-btn:hover,
 .add-days-btn:hover,
 .add-days-custom-btn:hover {
   border-color: var(--accent);

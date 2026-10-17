@@ -213,8 +213,10 @@
       <label class="detail-label">Scheduled Date
         <input type="date" class="date-input">
       </label>
-      <div class="add-days-row" data-tip="Push the deadline out. Counts from today if overdue. A task the app moved up goes back when pushed past 3 days out.">
-        <span class="add-days-label">Push deadline</span>
+      <div class="add-days-row" data-tip="Set the deadline to today or tomorrow, or push it out (counts from today if overdue). A task the app moved up goes back when pushed past 3 days out.">
+        <span class="add-days-label">Deadline</span>
+        <button type="button" class="set-date-btn" data-offset="0">Today</button>
+        <button type="button" class="set-date-btn" data-offset="1">Tomorrow</button>
         <button type="button" class="add-days-btn" data-days="1">+1d</button>
         <button type="button" class="add-days-btn" data-days="3">+3d</button>
         <button type="button" class="add-days-btn" data-days="7">+1w</button>

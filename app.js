@@ -905,6 +905,12 @@ function buildTaskCard(task, template, today) {
     if (dateInput.value) setScheduledDate(task, dateInput.value);
   });
 
+  node.querySelectorAll(".set-date-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const date = addDays(todayStr(), Number(btn.dataset.offset));
+      if (date !== task.scheduledDate) setScheduledDate(task, date);
+    });
+  });
   node.querySelectorAll(".add-days-btn").forEach((btn) => {
     btn.addEventListener("click", () => addDaysToDeadline(task, Number(btn.dataset.days)));
   });
